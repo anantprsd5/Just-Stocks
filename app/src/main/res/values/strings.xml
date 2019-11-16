@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Just Stocks</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Just Stocks</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="menu_charts">Charts</string>
+    <string name="menu_series">Series</string>
+    <string name="menu_groups">Groups</string>
+    <string name="menu_chatroom">Chatroom</string>
+    <string name="menu_activity">Activity</string>
+    <string name="menu_join_for_free">Join For Free</string>
+    <string name="menu_instructors">Instructors and Trainers</string>
+    <string name="menu_courses">Courses</string>
+    <string name="menu_open_demat_account">Open Demat Account</string>
+    <string name="menu_about_us">About Us</string>
+    <string name="menu_contact_us">Contact Us</string>
+</resources>
