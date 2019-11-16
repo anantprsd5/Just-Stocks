@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Drawable d = getResources().getDrawable(R.drawable.ic_group_add_black_24dp);
+        toolbar.setOverflowIcon(d);
 
         progressBar = findViewById(R.id.progress_circular);
 
