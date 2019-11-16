@@ -1,6 +1,7 @@
 package com.application.juststocks;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -24,6 +25,7 @@ import android.view.Menu;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -48,6 +50,8 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         progressBar = findViewById(R.id.progress_circular);
 
@@ -103,6 +107,14 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+
+        if(id == R.id.register){
+            progressBar.setVisibility(View.VISIBLE);
+            webView.loadUrl("https://juststocks.in/free-membership-registration/");
+        } else if(id == R.id.login){
+            progressBar.setVisibility(View.VISIBLE);
+            webView.loadUrl("https://juststocks.in/lms-login");
+        }
 
         return super.onOptionsItemSelected(item);
     }
