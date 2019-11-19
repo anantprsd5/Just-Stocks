@@ -34,6 +34,12 @@ import android.widget.Toast;
 import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Stack;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,6 +51,8 @@ public class MainActivity extends AppCompatActivity
     private HashMap<String, Integer> hashMap = new HashMap<>();
     private NavigationView navigationView;
     private String lastOpen;
+    private String loginStatus;
+    private Timer t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +104,54 @@ public class MainActivity extends AppCompatActivity
         stack.push("https://juststocks.in/");
         hashMap.put("https://juststocks.in/", 0);
         navigationView.getMenu().getItem(0).setChecked(true);
+
+        periodicChecks();
+
+    }
+
+    private void periodicChecks() {
+        t = new Timer();
+        //Set the schedule function and rate
+        t.scheduleAtFixedRate(new TimerTask() {
+
+                                  @Override
+                                  public void run() {
+                                      checkForLogin();
+                                      //Called each time when 1000 milliseconds (1 second) (the period parameter)
+                                  }
+
+                              },
+        //Set how long before to start calling the TimerTask (in milliseconds)
+                0,
+        //Set the amount of time between each execution (in milliseconds)
+                1000*10);
+    }
+
+    private void checkForLogin() {
+        //Creating an object of our api interface
+        ApiService api = RetroClient.getApiService();
+        Call<Login> call = api.getMyJSON();
+        /**
+         * Enqueue Callback will be call when get response...
+         */
+        call.enqueue(new Callback<Login>() {
+            @Override
+            public void onResponse(Call<Login> call, Response<Login> response) {
+                //Dismiss Dialog
+
+                if (response.isSuccessful()) {
+                    /**
+                     * Got Successfully
+                     */
+                    loginStatus = response.body().getLogin();
+                    invalidateOptionsMenu();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Login> call, Throwable t) {
+            }
+        });
     }
 
     @Override
@@ -147,8 +203,13 @@ public class MainActivity extends AppCompatActivity
             progressBar.setVisibility(View.VISIBLE);
             webView.loadUrl("https://juststocks.in/free-membership-registration/");
         } else if (id == R.id.login) {
-            progressBar.setVisibility(View.VISIBLE);
-            webView.loadUrl("https://juststocks.in/lms-login");
+            if(item.getTitle().equals("Log In")) {
+                progressBar.setVisibility(View.VISIBLE);
+                webView.loadUrl("https://juststocks.in/lms-login");
+            } else if(item.getTitle().equals("Log Out")){
+                progressBar.setVisibility(View.VISIBLE);
+                webView.loadUrl("https://juststocks.in/lms-logout"); //Change here
+            }
         }
 
         return super.onOptionsItemSelected(item);
@@ -254,5 +315,27 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if(loginStatus!=null) {
+            if (loginStatus.equals("true")) {
+                menu.findItem(R.id.login).setTitle("Log Out");
+                menu.findItem(R.id.register).setVisible(false);
+            }
+            else{
+                menu.findItem(R.id.login).setTitle("Log In");
+                menu.findItem(R.id.register).setVisible(true);
+            }
+
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onPause() {
+        t.cancel();
+        super.onPause();
     }
 }
