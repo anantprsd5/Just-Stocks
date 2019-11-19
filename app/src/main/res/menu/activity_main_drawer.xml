@@ -30,34 +30,51 @@
             android:id="@+id/nav_activity"
             android:icon="@drawable/ic_local_activity_black_24dp"
             android:title="@string/menu_activity" />
+
+
+        <item
+            android:id="@+id/nav_instructors"
+            android:icon="@drawable/ic_border_color_black_24dp"
+            android:title="@string/menu_instructors" />
+        <item
+            android:id="@+id/nav_courses"
+            android:icon="@drawable/ic_event_note_black_24dp"
+            android:title="@string/menu_courses" />
+
+        <item
+            android:id="@+id/nav_open_demat_account"
+            android:icon="@drawable/ic_account_circle_black_24dp"
+            android:title="@string/menu_open_demat_account" />
+
+        <item
+            android:id="@+id/nav_about_us"
+            android:icon="@drawable/ic_info_black_24dp"
+            android:title="@string/menu_about_us" />
+
+        <item
+            android:id="@+id/nav_contact_us"
+            android:icon="@drawable/ic_contact_phone_black_24dp"
+            android:title="@string/menu_contact_us" />
+
     </group>
 
     <item android:title="More">
+
         <menu>
-            <item
-                android:id="@+id/nav_instructors"
-                android:icon="@drawable/ic_border_color_black_24dp"
-                android:title="@string/menu_instructors" />
-            <item
-                android:id="@+id/nav_courses"
-                android:icon="@drawable/ic_event_note_black_24dp"
-                android:title="@string/menu_courses" />
 
             <item
-                android:id="@+id/nav_open_demat_account"
-                android:icon="@drawable/ic_account_circle_black_24dp"
-                android:title="@string/menu_open_demat_account" />
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_share_black_24dp"
+                android:title="Share" />
 
             <item
-                android:id="@+id/nav_about_us"
-                android:icon="@drawable/ic_info_black_24dp"
-                android:title="@string/menu_about_us" />
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_close_black_24dp"
+                android:title="Exit" />
 
-            <item
-                android:id="@+id/nav_contact_us"
-                android:icon="@drawable/ic_contact_phone_black_24dp"
-                android:title="@string/menu_contact_us" />
+
         </menu>
+
     </item>
 
 </menu>
